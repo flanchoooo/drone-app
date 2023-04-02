@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@Table(name = "drone")
+@Table(name = "drones")
 @Entity
 public class Drone  implements Serializable {
     public static final long serialVersionUID = -4937240965976749105L;

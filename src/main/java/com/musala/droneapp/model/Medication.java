@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@Table(name = "medication")
+@Table(name = "medications")
 public class Medication implements Serializable {
     public static final long serialVersionUID = 7705937458543097365L;
 
