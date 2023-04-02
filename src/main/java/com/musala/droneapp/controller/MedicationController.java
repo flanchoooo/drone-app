@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Slf4j
@@ -26,9 +27,10 @@ public class MedicationController {
 
     private final MedicationService medicationService;
 
-    @PostMapping(path = "/", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<Medication> create(@RequestBody MedicationRequestDto medicationRequestDto, @RequestParam("image")MultipartFile image){
-        return new ResponseEntity<>( medicationService.createMedication(medicationRequestDto,image), HttpStatus.CREATED);
+    @PostMapping(path = "/", consumes = { "multipart/form-data" })
+    public ResponseEntity<Medication> create(@ModelAttribute MedicationRequestDto medicationRequestDto) throws IOException {
+        System.out.println("ddddd" + medicationRequestDto.getCode());
+        return new ResponseEntity<>( medicationService.createMedication(medicationRequestDto), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/find-by-id/{id}")
