@@ -1,7 +1,7 @@
 package com.musala.droneapp.service.impl;
 
 import com.musala.droneapp.dto.DroneRequestDto;
-import com.musala.droneapp.exceptions.InvalidIdException;
+import com.musala.droneapp.exceptions.InvalidTypeException;
 import com.musala.droneapp.exceptions.NotFoundException;
 import com.musala.droneapp.model.Drone;
 import com.musala.droneapp.repository.DroneRepository;
@@ -11,7 +11,6 @@ import com.musala.droneapp.utils.ModelTypeEnum;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,15 +26,15 @@ public class DroneServiceImpl implements DroneService {
     public Drone createDrone(DroneRequestDto droneRequestDto) {
 
         if(Arrays.asList(ModelTypeEnum.values()).stream().filter(model-> model.toString().equals(droneRequestDto.getModel())).collect(Collectors.toList()).size() == 0){
-            throw new InvalidIdException("Allowed values for model are: LIGHTWEIGHT,MIDDLEWEIGHT,CRUISEWEIGHT,HEAVYWEIGHT");
+            throw new InvalidTypeException("Allowed values for model are: LIGHTWEIGHT,MIDDLEWEIGHT,CRUISEWEIGHT,HEAVYWEIGHT");
         }
 
         if(Arrays.asList(DroneStateEnum.values()).stream().filter(model-> model.toString().equals(droneRequestDto.getState())).collect(Collectors.toList()).size() == 0){
-            throw new InvalidIdException("Allowed values for state are: IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING");
+            throw new InvalidTypeException("Allowed values for state are: IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING");
         }
 
         if(droneRepository.existsBySerialNumber(droneRequestDto.getSerialNumber())){
-            throw new InvalidIdException("Serial Number " + droneRequestDto.getSerialNumber() + " Already exists.");
+            throw new InvalidTypeException("Serial Number " + droneRequestDto.getSerialNumber() + " Already exists.");
         }
 
         final Drone drone = new Drone();
@@ -52,11 +51,11 @@ public class DroneServiceImpl implements DroneService {
         var drone  = droneRepository.findById(Id).orElseThrow(()-> new NotFoundException("drone"));
 
         if(Arrays.asList(ModelTypeEnum.values()).stream().filter(model-> model.toString().equals(droneRequestDto.getModel())).collect(Collectors.toList()).size() == 0){
-            throw new InvalidIdException("Allowed values for model are: LIGHTWEIGHT,MIDDLEWEIGHT,CRUISEWEIGHT,HEAVYWEIGHT");
+            throw new InvalidTypeException("Allowed values for model are: LIGHTWEIGHT,MIDDLEWEIGHT,CRUISEWEIGHT,HEAVYWEIGHT");
         }
 
         if(Arrays.asList(DroneStateEnum.values()).stream().filter(model-> model.toString().equals(droneRequestDto.getState())).collect(Collectors.toList()).size() == 0){
-            throw new InvalidIdException("Allowed values for state are: IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING");
+            throw new InvalidTypeException("Allowed values for state are: IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING");
         }
 
 
