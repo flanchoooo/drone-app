@@ -1,4 +1,7 @@
 spring:
+  h2:
+    console:
+      enabled: true
   datasource:
     url: jdbc:h2:mem:drone
     driverClassName: org.h2.Driver
@@ -6,3 +9,4 @@ spring:
     password: root
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true

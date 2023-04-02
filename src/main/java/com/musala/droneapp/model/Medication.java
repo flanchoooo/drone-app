@@ -12,10 +12,11 @@ import java.math.BigDecimal;
 @Setter
 @RequiredArgsConstructor
 @Table(name = "medications")
+@Entity
 public class Medication implements Serializable {
     public static final long serialVersionUID = 7705937458543097365L;
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false,updatable = false)
     private Integer Id;
