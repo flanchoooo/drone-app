@@ -30,5 +30,6 @@ public class Medication implements Serializable {
     private String code;
 
     @Column(name = "image", nullable = false)
-    private String image;
+    @Lob
+    private byte[] image;
 }
