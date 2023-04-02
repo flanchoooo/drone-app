@@ -1,4 +1,4 @@
 package com.musala.droneapp.controller;
 
-public class MedicationController {
+public class DispatchController {
 }
