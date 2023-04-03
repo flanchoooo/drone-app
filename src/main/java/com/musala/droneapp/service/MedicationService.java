@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface MedicationService {
 
-    Medication createMedication(MedicationRequestDto medicationRequestDto) throws IOException;
+    Medication createMedication(MedicationRequestDto medicationRequestDt) throws IOException;
     Medication findById(Integer Id);
     Medication updateMedication(MedicationRequestDto medicationRequestDto,Integer Id);
 

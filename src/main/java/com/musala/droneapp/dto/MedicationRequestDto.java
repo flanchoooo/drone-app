@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Data
 public class MedicationRequestDto {
     private String name;
-    private BigDecimal weight;
+    private Double weight;
     private String code;
     private MultipartFile image;
 }

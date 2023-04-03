@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface DroneRepository extends JpaRepository<Drone,Integer> {
 
     Boolean existsBySerialNumber(String serialNumber);
+
+    Drone findBySerialNumber(String serialNumber);
 }

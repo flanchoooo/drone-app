@@ -12,6 +12,8 @@ import java.util.List;
 @Data
 public class DispatchRequestDto {
 
-    private Drone drone;
-    private List<DispatchItem> dispatchItemList;
+    private String droneSerial;
+    private String destination;
+    private int[] medicationIds;
+    //private List<DispatchItem> dispatchItemList;
 }

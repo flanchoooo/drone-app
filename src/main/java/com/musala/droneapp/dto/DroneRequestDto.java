@@ -8,7 +8,7 @@ public class DroneRequestDto {
 
     private String serialNumber;
     private String model;
-    private BigDecimal weightLimit;
+    private Double weightLimit;
     private Integer batteryLevel;
     private String state;
 

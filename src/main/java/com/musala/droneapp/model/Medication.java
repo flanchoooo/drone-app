@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Table(name = "medications")
 @Entity
 public class Medication implements Serializable {
-    public static final long serialVersionUID = 7705937458543097365L;
+    public static final long serialVersionUID = -3123117201801907027L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +26,7 @@ public class Medication implements Serializable {
     private String name;
 
     @Column(name = "weight", nullable = false)
-    private BigDecimal weight;
+    private Double weight;
 
     @Column(name = "code", nullable = false)
     private String code;

@@ -32,14 +32,14 @@ public class Drone  implements Serializable {
     private String serialNumber;
 
     @NotNull(message = "Please provide model")
-    @Column(name = "model_type", nullable = false)
+    @Column(name = "model", nullable = false)
     @Enumerated(EnumType.STRING)
     private ModelTypeEnum model;
 
     @NotNull(message = "Please provide wieght")
     @Max(value = 500,message = "Weight must not exceed 500gr")
     @Column(name = "weight_limit", nullable = false)
-    private BigDecimal weightLimit;
+    private Double weightLimit;
 
     @NotNull(message = "Please provide battery level")
     @Max(value = 100,message = "Battery level should not exceed 100")

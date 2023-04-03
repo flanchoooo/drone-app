@@ -1,5 +1,6 @@
 package com.musala.droneapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -13,18 +14,20 @@ import java.io.Serializable;
 @Table(name = "dispatch_items")
 @Entity
 public class DispatchItem implements Serializable {
-    public static final long serialVersionUID = -4937240965976749105L;
+    public static final long serialVersionUID = 1056282854980676154L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false,updatable = false)
     private Integer Id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "dispatch_id")
     private Dispatch dispatch;
 
-    @Column(name = "medication_id")
-    private Medication medication;
 
+    @ManyToOne
+    @JoinColumn(name = "medication_id")
+    private Medication medication;
 }

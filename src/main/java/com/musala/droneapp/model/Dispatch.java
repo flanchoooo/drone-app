@@ -28,7 +28,11 @@ public class Dispatch implements Serializable {
     @JoinColumn(name = "drone_id")
     private Drone drone;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
-    private List<DispatchItem> dispatchItems;
+//    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//    private List<DispatchItem> dispatchItems;
+//
+//    public void addDispatchItem(DispatchItem item){
+//        item.setDispatch(this);
+//    }
 
 }
