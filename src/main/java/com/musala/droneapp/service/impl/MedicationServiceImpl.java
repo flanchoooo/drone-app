@@ -1,6 +1,5 @@
 package com.musala.droneapp.service.impl;
 
-import com.musala.droneapp.dto.DroneRequestDto;
 import com.musala.droneapp.dto.MedicationRequestDto;
 import com.musala.droneapp.exceptions.InvalidTypeException;
 import com.musala.droneapp.exceptions.NotFoundException;

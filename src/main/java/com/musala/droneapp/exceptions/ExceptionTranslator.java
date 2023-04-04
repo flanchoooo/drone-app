@@ -53,9 +53,7 @@ public class ExceptionTranslator {
     @ResponseBody
     public ResponseEntity<ExceptionResponseModel> onConstraintValidationException(ConstraintViolationException e) {
         final ExceptionResponseModel errorDetail = new ExceptionResponseModel();
-        e.getConstraintViolations().forEach(violation -> {
-            errorDetail.setMessage(violation.getPropertyPath().toString().toUpperCase(Locale.ROOT) + " - " + violation.getMessage());
-        });
+        e.getConstraintViolations().forEach(violation -> errorDetail.setMessage(violation.getPropertyPath().toString().toUpperCase(Locale.ROOT) + " - " + violation.getMessage()));
 
         errorDetail.setStatus(HttpStatus.BAD_REQUEST);
         errorDetail.setTimestamp(errorDateFormat.format(new Date()));

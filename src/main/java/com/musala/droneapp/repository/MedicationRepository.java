@@ -11,7 +11,4 @@ public interface MedicationRepository extends JpaRepository<Medication,Integer> 
     @Query(value = "select * from medications where id in(:idList)", nativeQuery = true)
     Double calculateWeight(List<Integer> idList);
 
-//    @Query(value = "select sum(weight) from medications where id in(:idList)", nativeQuery = true)
-//    Double calculateWeight(int[] idList);
-
 }

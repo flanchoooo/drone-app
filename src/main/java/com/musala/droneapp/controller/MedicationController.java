@@ -1,10 +1,8 @@
 package com.musala.droneapp.controller;
 
-import com.musala.droneapp.dto.DroneRequestDto;
+
 import com.musala.droneapp.dto.MedicationRequestDto;
-import com.musala.droneapp.model.Drone;
 import com.musala.droneapp.model.Medication;
-import com.musala.droneapp.service.DroneService;
 import com.musala.droneapp.service.MedicationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,7 +26,6 @@ public class MedicationController {
 
     @PostMapping(path = "/", consumes = { "multipart/form-data" })
     public ResponseEntity<Medication> create(@ModelAttribute MedicationRequestDto medicationRequestDto) throws IOException {
-        System.out.println("ddddd" + medicationRequestDto.getCode());
         return new ResponseEntity<>( medicationService.createMedication(medicationRequestDto), HttpStatus.CREATED);
     }
 

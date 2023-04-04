@@ -11,7 +11,6 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -50,13 +49,4 @@ public class Drone  implements Serializable {
     @Column(name = "state", nullable = false)
     @Enumerated(EnumType.STRING)
     private DroneStateEnum state;
-
-
-
-
-//    model (Lightweight, Middleweight, Cruiserweight, Heavyweight);
-//    weight limit (500gr max);
-//    battery capacity (percentage);
-//    state (IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING).
-
 }

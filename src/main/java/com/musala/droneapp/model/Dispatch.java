@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
@@ -27,12 +26,4 @@ public class Dispatch implements Serializable {
     @ManyToOne
     @JoinColumn(name = "drone_id")
     private Drone drone;
-
-//    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-//    private List<DispatchItem> dispatchItems;
-//
-//    public void addDispatchItem(DispatchItem item){
-//        item.setDispatch(this);
-//    }
-
 }

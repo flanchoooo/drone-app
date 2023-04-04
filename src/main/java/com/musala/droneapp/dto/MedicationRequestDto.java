@@ -3,7 +3,6 @@ package com.musala.droneapp.dto;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.math.BigDecimal;
 
 @Data
 public class MedicationRequestDto {

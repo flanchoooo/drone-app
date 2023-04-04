@@ -25,15 +25,16 @@ public class DroneServiceImpl implements DroneService {
     @Override
     public Drone createDrone(DroneRequestDto droneRequestDto) {
 
-        if(Arrays.asList(ModelTypeEnum.values()).stream().filter(model-> model.toString().equals(droneRequestDto.getModel())).collect(Collectors.toList()).size() == 0){
+        if(Arrays.asList(ModelTypeEnum.values()).stream().filter(model-> model.toString().equals(droneRequestDto.getModel())).collect(Collectors.toList()).isEmpty()){
             throw new InvalidTypeException("Allowed values for model are: LIGHTWEIGHT,MIDDLEWEIGHT,CRUISEWEIGHT,HEAVYWEIGHT");
         }
 
-        if(Arrays.asList(DroneStateEnum.values()).stream().filter(model-> model.toString().equals(droneRequestDto.getState())).collect(Collectors.toList()).size() == 0){
+        if(Arrays.asList(DroneStateEnum.values()).stream().filter(model-> model.toString().equals(droneRequestDto.getState())).collect(Collectors.toList()).isEmpty()){
             throw new InvalidTypeException("Allowed values for state are: IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING");
         }
 
-        if(droneRepository.existsBySerialNumber(droneRequestDto.getSerialNumber())){
+        Boolean check = droneRepository.existsBySerialNumber(droneRequestDto.getSerialNumber());
+        if(Boolean.TRUE.equals(check)){
             throw new InvalidTypeException("Serial Number " + droneRequestDto.getSerialNumber() + " Already exists.");
         }
 
@@ -50,11 +51,11 @@ public class DroneServiceImpl implements DroneService {
     public Drone updateDrone(DroneRequestDto droneRequestDto, Integer Id) {
         var drone  = droneRepository.findById(Id).orElseThrow(()-> new NotFoundException("drone"));
 
-        if(Arrays.asList(ModelTypeEnum.values()).stream().filter(model-> model.toString().equals(droneRequestDto.getModel())).collect(Collectors.toList()).size() == 0){
+        if(Arrays.asList(ModelTypeEnum.values()).stream().filter(model-> model.toString().equals(droneRequestDto.getModel())).collect(Collectors.toList()).isEmpty()){
             throw new InvalidTypeException("Allowed values for model are: LIGHTWEIGHT,MIDDLEWEIGHT,CRUISEWEIGHT,HEAVYWEIGHT");
         }
 
-        if(Arrays.asList(DroneStateEnum.values()).stream().filter(model-> model.toString().equals(droneRequestDto.getState())).collect(Collectors.toList()).size() == 0){
+        if(Arrays.asList(DroneStateEnum.values()).stream().filter(model-> model.toString().equals(droneRequestDto.getState())).collect(Collectors.toList()).isEmpty()){
             throw new InvalidTypeException("Allowed values for state are: IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING");
         }
 

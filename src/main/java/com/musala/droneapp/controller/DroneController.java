@@ -3,7 +3,6 @@ package com.musala.droneapp.controller;
 import com.musala.droneapp.dto.DroneRequestDto;
 import com.musala.droneapp.model.Drone;
 import com.musala.droneapp.service.DroneService;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
