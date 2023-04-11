@@ -61,13 +61,10 @@ public class MedicationServiceImpl implements MedicationService {
     }
 
     public String convertImageToBase64String(MultipartFile imageFile) throws IOException {
-        // Get the input stream of the image file
+
         InputStream inputStream = imageFile.getInputStream();
-        // Convert the image file to a byte array
         byte[] imageBytes = FileCopyUtils.copyToByteArray(inputStream);
-        // Encode the byte array to a Base64 string
         String base64EncodedString = Base64.getEncoder().encodeToString(imageBytes);
-        // Close the input stream
         inputStream.close();
         return base64EncodedString;
     }

@@ -26,7 +26,6 @@ public class DispatchItem implements Serializable {
     @JoinColumn(name = "dispatch_id")
     private Dispatch dispatch;
 
-
     @ManyToOne
     @JoinColumn(name = "medication_id")
     private Medication medication;

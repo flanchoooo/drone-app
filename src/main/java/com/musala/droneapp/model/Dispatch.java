@@ -23,6 +23,9 @@ public class Dispatch implements Serializable {
     @Column(name = "destination", nullable = false)
     private String destination;
 
+    @Column(name = "state", nullable = false)
+    private String state;
+
     @ManyToOne
     @JoinColumn(name = "drone_id")
     private Drone drone;

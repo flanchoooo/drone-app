@@ -1,10 +1,13 @@
 package com.musala.droneapp.service.impl;
 
+import com.musala.droneapp.dto.DispatchDetailsDto;
 import com.musala.droneapp.dto.DispatchRequestDto;
 import com.musala.droneapp.exceptions.InvalidTypeException;
 import com.musala.droneapp.exceptions.NotFoundException;
 import com.musala.droneapp.model.Dispatch;
 import com.musala.droneapp.model.DispatchItem;
+import com.musala.droneapp.model.Drone;
+import com.musala.droneapp.model.Medication;
 import com.musala.droneapp.repository.DispatchItemRepository;
 import com.musala.droneapp.repository.DispatchRepository;
 import com.musala.droneapp.repository.DroneRepository;
@@ -15,6 +18,8 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Service
@@ -57,6 +62,7 @@ public class DispatchServiceImpl implements DispatchService {
 
         Dispatch dispatch = new Dispatch();
         dispatch.setDrone(drone);
+        dispatch.setState("DELIVERING");
         dispatch.setDestination(dispatchRequestDto.getDestination());
         dispatchRepository.save(dispatch);
 
@@ -70,6 +76,42 @@ public class DispatchServiceImpl implements DispatchService {
         drone.setState(DroneStateEnum.valueOf("DELIVERING"));
         droneRepository.save(drone);
         return  dispatch;
+    }
+
+    @Override
+    public DispatchDetailsDto droneCargo(String serialNumber){
+        var drone =  droneRepository.findBySerialNumber(serialNumber);
+        if(drone==null){
+            throw new NotFoundException("drone");
+        }
+        var dispatch = dispatchRepository.findDroneDispatch(drone.getId());
+        if(dispatch==null){
+            throw new NotFoundException("dispatch profile");
+        }
+
+        var dispatchItems = dispatchItemRepository.findDispatchedItems(dispatch.getId());
+
+        List<Medication> medicationList =new ArrayList<>();
+        for(DispatchItem dispatchItem : dispatchItems){
+           var medication =  medicationRepository.findById(dispatchItem.getMedication().getId()).orElseThrow(()-> new NotFoundException("medication"));
+           medicationList.add(medication);
+        }
+
+
+        DispatchDetailsDto dispatchDetailsDto = new DispatchDetailsDto();
+        dispatchDetailsDto.setDrone(drone);
+        dispatchDetailsDto.setMedicationList(medicationList);
+        return dispatchDetailsDto;
+    }
+
+    @Override
+    public List<Drone> availableDrones() {
+        return droneRepository.findDrones();
+    }
+
+    @Override
+    public List<Drone> batteryLevel() {
+        return droneRepository.batteryLevel();
     }
 
 }
